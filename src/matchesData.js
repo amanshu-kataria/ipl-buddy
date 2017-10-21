@@ -1,20 +1,11 @@
 import React, { Component } from "react";
-
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend
-} from "recharts";
+import Graph from "./Graph.js";
 
 class MatchesData extends Component {
   constructor() {
     super();
     this.state = {
-      deliveries: [],
+      TossDecision: [],
       winType: []
     };
     this.updateData = this.updateData.bind(this);
@@ -32,7 +23,7 @@ class MatchesData extends Component {
   }
 
   updateData(result) {
-    var deliveries = [{ name: "Field", value: 0 }, { name: "Bat", value: 0 }];
+    var TossDecision = [{ name: "Field", value: 0 }, { name: "Bat", value: 0 }];
     var winType = [
       { name: "By Runs", value: 0 },
       { name: "By Wickets", value: 0 },
@@ -40,40 +31,31 @@ class MatchesData extends Component {
     ];
     var resultData = result.data;
     for (var i = 0; i < result.data.length; i++) {
-      if (resultData[i].Toss_Decision === "field") deliveries[0].value++;
-      else deliveries[1].value++;
+      if (resultData[i].Toss_Decision === "field") TossDecision[0].value++;
+      else TossDecision[1].value++;
 
       if (resultData[i].Win_Type === "by runs") winType[0].value++;
       else if (resultData[i].Win_Type === "by wickets") winType[1].value++;
       else winType[2].value++;
     }
-    this.setState({ deliveries, winType });
+    this.setState({ TossDecision, winType });
   }
 
   render() {
-    var mData = this.state.deliveries;
-    var winType = this.state.winType;
     return (
       <div>
-        <BarChart
+        <Graph
+          name="Toss Decision"
+          data={this.state.TossDecision}
           width={300}
-          height={200}
-          data={mData}
-          margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
-        >
-          <XAxis dataKey="name" />
-          <YAxis />
-          <CartesianGrid strokeDasharray="3 3" />
-          <Tooltip />
-          <Legend />
-          <Bar
-            dataKey="value"
-            fill="#82ca9d"
-            name="Toss Decision"
-            label
-            barSize={30}
-          />
-        </BarChart>
+          color="#82CA9D"
+        />
+        <Graph
+          name="Win Type"
+          data={this.state.winType}
+          width={350}
+          color="#FF8A65"
+        />
       </div>
     );
   }
