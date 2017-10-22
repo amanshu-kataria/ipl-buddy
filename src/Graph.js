@@ -5,12 +5,12 @@ import {
   Bar,
   XAxis,
   YAxis,
+  Legend,
   CartesianGrid,
-  Tooltip,
-  Legend
+  Tooltip
 } from "recharts";
 
-class Graph extends Component {
+class Chart extends Component {
   render() {
     return (
       <BarChart
@@ -36,4 +36,4 @@ class Graph extends Component {
   }
 }
 
-export default Graph;
+export default Chart;
