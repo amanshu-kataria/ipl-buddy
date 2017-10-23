@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Chart from "./Graph.js";
+import { Chart, MyPieChart } from "./Graph.js";
 import "react-bootstrap/dist/react-bootstrap.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Grid, Row, Col } from "react-bootstrap";
@@ -8,11 +8,17 @@ class MatchesData extends Component {
   constructor() {
     super();
     this.state = {
-      totalMatches: "",
+      totalMatches: 0,
       tossDecision: [],
       winType: [],
       resultType: [],
-      winByRuns: []
+      winByRuns: [],
+      seasonMatches: [],
+      matchesWonOnToss: { name: "Won", value: 0 },
+      hostCountries: [
+        { name: "India", value: 0 },
+        { name: "South Africa", value: 0 }
+      ]
     };
     this.updateData = this.updateData.bind(this);
   }
@@ -33,16 +39,19 @@ class MatchesData extends Component {
    * @param {Object} result - contains the parsed data.
    */
   updateData(result) {
-    var tossDecision = [{ name: "Field", value: 0 }, { name: "Bat", value: 0 }];
+    var tossDecision = [
+      { name: "Field", value: 0, fill: "#8BC34A" },
+      { name: "Bat", value: 0, fill: "#009688" }
+    ];
     var winType = [
-      { name: "By Runs", value: 0 },
-      { name: "By Wickets", value: 0 },
-      { name: "Tie", value: 0 },
-      { name: "No Result", value: 0 }
+      { name: "By Runs", value: 0, fill: "#673AB7" },
+      { name: "By Wickets", value: 0, fill: "#4CAF50" },
+      { name: "Tie", value: 0, fill: "#03A9F4" },
+      { name: "No Result", value: 0, fill: "#EF5350" }
     ];
     var resultType = [
-      { name: "D/L Method", value: 0 },
-      { name: "Normal Result", value: 0 }
+      { name: "D/L Method", value: 0, fill: "#FF5252" },
+      { name: "Normal Result", value: 0, fill: "#AA00FF" }
     ];
     var winByRuns = [
       { name: "1-10", value: 0 },
@@ -52,6 +61,22 @@ class MatchesData extends Component {
       { name: "80-110", value: 0 },
       { name: "110+", value: 0 }
     ];
+
+    var seasonMatches = [
+      { name: "1", value: 0 },
+      { name: "2", value: 0 },
+      { name: "3", value: 0 },
+      { name: "4", value: 0 },
+      { name: "5", value: 0 },
+      { name: "6", value: 0 },
+      { name: "7", value: 0 },
+      { name: "8", value: 0 },
+      { name: "9", value: 0 }
+    ];
+
+    var matchesWonOnToss = this.state.matchesWonOnToss;
+
+    var hostCountries = this.state.hostCountries;
 
     var resultData = result.data; //contains data
     for (var i = 0; i < result.data.length; i++) {
@@ -98,6 +123,15 @@ class MatchesData extends Component {
       //result type calculation i.e. whether a team won using either D/L method normal result
       if (resultData[i].Is_DuckWorthLewis === "1") resultType[0].value++;
       else resultType[1].value++;
+
+      //calculation for matches played in each season
+      seasonMatches[parseInt(resultData[i].Season_Id, 10) - 1].value++;
+
+      if (resultData[i].Toss_Winner_Id === resultData[i].Match_Winner_Id)
+        matchesWonOnToss.value++;
+
+      if (resultData[i].Host_Country === "India") hostCountries[0].value++;
+      else hostCountries[1].value++;
     }
 
     this.setState({
@@ -105,50 +139,108 @@ class MatchesData extends Component {
       winType,
       totalMatches: result.data.length,
       resultType,
-      winByRuns
+      winByRuns,
+      seasonMatches,
+      matchesWonOnToss,
+      hostCountries
     });
   }
 
   render() {
+    const styles = {
+      grid: {
+        paddingLeft: 0,
+        paddingRight: 0
+      },
+      row: {
+        marginLeft: 0,
+        marginRight: 0,
+        paddingTop: 15,
+        paddingBottom: 15
+      },
+      col: {
+        paddingLeft: 0,
+        paddingRight: 0
+      },
+      container: {
+        paddingTop: 60
+      }
+    };
     return (
-      <div>
-        <h4>
-          The below stats are collected from {this.state.totalMatches} matches.
-        </h4>
-        <Grid>
-          <Row>
-            <Col md={4} sm={6} xs={12} lg={4}>
-              <Chart
-                name="Toss Decision"
-                data={this.state.tossDecision}
-                width={350}
-                color="#82CA9D"
-              />
+      <div style={styles.container}>
+        <Grid style={styles.grid}>
+          <Row style={styles.row}>
+            <Col style={styles.col}>
+              <h3>Did you know?</h3>
             </Col>
-            <Col md={4} sm={6} xs={12} lg={4}>
-              <Chart
-                name="Win Type"
-                data={this.state.winType}
-                width={400}
-                color="#FF8A65"
-              />
-            </Col>
-            <Col md={4} sm={12} xs={12} lg={4}>
-              <Chart
-                name="Result Type"
-                data={this.state.resultType}
-                width={350}
-                color="#0091EA"
-              />
+          </Row>
+          <Row
+            style={{
+              marginLeft: 0,
+              marginRight: 0
+            }}
+          >
+            <Col style={styles.col}>
+              <ul>
+                <li>
+                  <p>
+                    A total of {this.state.totalMatches} matches has been played
+                    till date in 9 seasons.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Only {this.state.matchesWonOnToss.value} matches has been
+                    won by team winning toss
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Only {this.state.hostCountries[0].value} matches has been
+                    played in India. The other{" "}
+                    {this.state.hostCountries[1].value} matches were played in
+                    South Africa.
+                  </p>
+                </li>
+              </ul>
             </Col>
           </Row>
           <Row>
-            <Col md={6}>
+            <Col>
+              <h3>Below are some stats from all 9 seasons.</h3>
+            </Col>
+          </Row>
+          <Row style={styles.row}>
+            <Col md={4} sm={6} xs={12} lg={4} style={styles.col}>
+              <h4>Decision after winning the toss</h4>
+              <MyPieChart data={this.state.tossDecision} />
+            </Col>
+            <Col md={4} sm={6} xs={12} lg={4} style={styles.col}>
+              <h4>Type of Win</h4>
+              <MyPieChart data={this.state.winType} />
+            </Col>
+            <Col md={4} sm={12} xs={12} lg={4} style={styles.col}>
+              <h4>Result Type</h4>
+              <MyPieChart data={this.state.resultType} />
+            </Col>
+          </Row>
+          <Row style={styles.row}>
+            <Col md={6} style={styles.col}>
+              <h4>Win by margins of runs</h4>
               <Chart
-                name="Win By Runs"
+                name="Number of Wins"
                 data={this.state.winByRuns}
                 width={400}
                 color="#F44336"
+              />
+            </Col>
+            <Col md={6} style={styles.col}>
+              <h4>Matches played in each season</h4>
+              <Chart
+                name="Matches Played"
+                data={this.state.seasonMatches}
+                width={500}
+                color="#4DB6AC"
               />
             </Col>
           </Row>
