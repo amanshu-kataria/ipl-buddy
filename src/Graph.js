@@ -6,6 +6,8 @@ import {
   XAxis,
   YAxis,
   Legend,
+  PieChart,
+  Pie,
   CartesianGrid,
   Tooltip
 } from "recharts";
@@ -36,4 +38,15 @@ class Chart extends Component {
   }
 }
 
-export default Chart;
+class MyPieChart extends Component {
+  render() {
+    return (
+      <PieChart width={300} height={250}>
+        <Pie data={this.props.data} outerRadius={60} label={true} />
+        <Legend />
+      </PieChart>
+    );
+  }
+}
+
+export { Chart, MyPieChart };
