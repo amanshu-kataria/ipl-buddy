@@ -42,9 +42,12 @@ class App extends Component {
           <Divider />
         </Drawer>
         <AppBar
-          style={{ backgroundColor: "#424242" }}
+          style={{
+            backgroundColor: "#424242",
+            position: "fixed"
+          }}
           onLeftIconButtonTouchTap={this.handleDrawer}
-          title="IPL Stats"
+          title="IPL Buddy"
         />
         <MatchesData />
       </MuiThemeProvider>
