@@ -205,7 +205,12 @@ class MatchesData extends Component {
               </ul>
             </Col>
           </Row>
-          <Row>
+          <Row
+            style={{
+              marginLeft: 0,
+              marginRight: 0
+            }}
+          >
             <Col>
               <h3>Below are some stats from all 9 seasons.</h3>
             </Col>
