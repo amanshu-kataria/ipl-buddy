@@ -6,7 +6,7 @@ import MenuItem from "material-ui/MenuItem";
 import IconButton from "material-ui/IconButton";
 import NavigationArrowBack from "material-ui/svg-icons/navigation/arrow-back";
 import Divider from "material-ui/Divider";
-import MatchesData from "./matchesData.js";
+import Stats from "./stats.js";
 
 class App extends Component {
   constructor() {
@@ -48,7 +48,7 @@ class App extends Component {
           onLeftIconButtonTouchTap={this.handleDrawer}
           title="IPL Buddy"
         />
-        <MatchesData />
+        <Stats />
       </MuiThemeProvider>
     );
   }
