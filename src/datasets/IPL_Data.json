@@ -1,0 +1,70 @@
+{
+  "matchStats": {
+    "totalMatches": 577,
+    "matchesWonOnToss": 291,
+    "tossDecision": [
+      { "name": "Field", "value": 315, "fill": "#8BC34A" },
+      { "name": "Bat", "value": 262, "fill": "#009688" }
+    ],
+    "winType": [
+      { "name": "By Runs", "value": 261, "fill": "#673AB7" },
+      { "name": "By Wickets", "value": 307, "fill": "#4CAF50" },
+      { "name": "Tie", "value": 6, "fill": "#03A9F4" },
+      { "name": "No Result", "value": 3, "fill": "#EF5350" }
+    ],
+    "resultType": [
+      { "name": "D/L Method", "value": 15, "fill": "#FF5252" },
+      { "name": "Normal Result", "value": 562, "fill": "#AA00FF" }
+    ],
+    "winByRuns": [
+      { "name": "1-10", "value": 61 },
+      { "name": "11-30", "value": 104 },
+      { "name": "31-55", "value": 57 },
+      { "name": "56-80", "value": 21 },
+      { "name": "80-110", "value": 13 },
+      { "name": "110+", "value": 5 }
+    ],
+    "seasonMatches": [
+      { "name": "1", "value": 58 },
+      { "name": "2", "value": 57 },
+      { "name": "3", "value": 60 },
+      { "name": "4", "value": 73 },
+      { "name": "5", "value": 74 },
+      { "name": "6", "value": 76 },
+      { "name": "7", "value": 60 },
+      { "name": "8", "value": 59 },
+      { "name": "9", "value": 60 }
+    ],
+    "hostCountries": [
+      { "name": "India", "value": 500 },
+      { "name": "South Africa", "value": 77 }
+    ]
+  },
+  "ballsStats": {
+    "totalDeliveries": 136590,
+    "runTypes": [
+      { "name": "zero", "value": 55874 },
+      { "name": "one", "value": 50107 },
+      { "name": "two", "value": 8842 },
+      { "name": "three", "value": 473 },
+      { "name": "four", "value": 15413 },
+      { "name": "five", "value": 42 },
+      { "name": "sixes", "value": 5813 }
+    ],
+    "dismissalTypes": [
+      { "name": "Caught", "value": 3245 },
+      { "name": "Caught And Bowled", "value": 148 },
+      { "name": "Bowled", "value": 1028 },
+      { "name": "Run Out", "value": 583 },
+      { "name": "lbw", "value": 326 },
+      { "name": "Retired Hurt", "value": 8 },
+      { "name": "Stumped", "value": 194 }
+    ],
+    "extrasType": [
+      { "name": "Legbyes", "value": 1950 },
+      { "name": "Wides", "value": 3496 },
+      { "name": "No Balls", "value": 493 },
+      { "name": "Byes", "value": 321 }
+    ]
+  }
+}
