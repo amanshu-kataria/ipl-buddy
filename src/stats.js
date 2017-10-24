@@ -4,7 +4,7 @@ import "react-bootstrap/dist/react-bootstrap.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Grid, Row, Col } from "react-bootstrap";
 
-class MatchesData extends Component {
+class Stats extends Component {
   constructor() {
     super();
     this.state = {
@@ -14,135 +14,23 @@ class MatchesData extends Component {
       resultType: [],
       winByRuns: [],
       seasonMatches: [],
-      matchesWonOnToss: { name: "Won", value: 0 },
-      hostCountries: [
-        { name: "India", value: 0 },
-        { name: "South Africa", value: 0 }
-      ]
+      matchesWonOnToss: 0,
+      hostCountries: []
     };
-    this.updateData = this.updateData.bind(this);
   }
 
   componentWillMount() {
-    var csvFilePath = require("./datasets/Match.csv");
-    var Papa = require("papaparse/papaparse.min.js");
-    Papa.parse(csvFilePath, {
-      header: true,
-      download: true,
-      skipEmptyLines: true,
-      complete: this.updateData
-    });
-  }
-
-  /**
-   * Gets the data after parsing, which is used for calculation and stored in a state.
-   * @param {Object} result - contains the parsed data.
-   */
-  updateData(result) {
-    var tossDecision = [
-      { name: "Field", value: 0, fill: "#8BC34A" },
-      { name: "Bat", value: 0, fill: "#009688" }
-    ];
-    var winType = [
-      { name: "By Runs", value: 0, fill: "#673AB7" },
-      { name: "By Wickets", value: 0, fill: "#4CAF50" },
-      { name: "Tie", value: 0, fill: "#03A9F4" },
-      { name: "No Result", value: 0, fill: "#EF5350" }
-    ];
-    var resultType = [
-      { name: "D/L Method", value: 0, fill: "#FF5252" },
-      { name: "Normal Result", value: 0, fill: "#AA00FF" }
-    ];
-    var winByRuns = [
-      { name: "1-10", value: 0 },
-      { name: "11-30", value: 0 },
-      { name: "31-55", value: 0 },
-      { name: "56-80", value: 0 },
-      { name: "80-110", value: 0 },
-      { name: "110+", value: 0 }
-    ];
-
-    var seasonMatches = [
-      { name: "1", value: 0 },
-      { name: "2", value: 0 },
-      { name: "3", value: 0 },
-      { name: "4", value: 0 },
-      { name: "5", value: 0 },
-      { name: "6", value: 0 },
-      { name: "7", value: 0 },
-      { name: "8", value: 0 },
-      { name: "9", value: 0 }
-    ];
-
-    var matchesWonOnToss = this.state.matchesWonOnToss;
-
-    var hostCountries = this.state.hostCountries;
-
-    var resultData = result.data; //contains data
-    for (var i = 0; i < result.data.length; i++) {
-      //Toss Decision data calculation
-      if (resultData[i].Toss_Decision === "field") tossDecision[0].value++;
-      else tossDecision[1].value++;
-
-      //Win type and win by runs data calculation
-      if (resultData[i].Win_Type === "by runs") {
-        winType[0].value++; //win type
-
-        //win by runs calculation
-        if (
-          parseInt(resultData[i].Won_By, 10) >= 1 &&
-          parseInt(resultData[i].Won_By, 10) <= 10
-        )
-          winByRuns[0].value++;
-        else if (
-          parseInt(resultData[i].Won_By, 10) >= 11 &&
-          parseInt(resultData[i].Won_By, 10) <= 30
-        )
-          winByRuns[1].value++;
-        else if (
-          parseInt(resultData[i].Won_By, 10) >= 31 &&
-          parseInt(resultData[i].Won_By, 10) <= 55
-        )
-          winByRuns[2].value++;
-        else if (
-          parseInt(resultData[i].Won_By, 10) >= 56 &&
-          parseInt(resultData[i].Won_By, 10) <= 80
-        )
-          winByRuns[3].value++;
-        else if (
-          parseInt(resultData[i].Won_By, 10) >= 81 &&
-          parseInt(resultData[i].Won_By, 10) <= 110
-        )
-          winByRuns[4].value++;
-        else winByRuns[5].value++;
-      } else if (resultData[i].Win_Type === "by wickets") {
-        winType[1].value++;
-      } else if (resultData[i].Win_Type === "Tie") winType[2].value++;
-      else winType[3].value++;
-
-      //result type calculation i.e. whether a team won using either D/L method normal result
-      if (resultData[i].Is_DuckWorthLewis === "1") resultType[0].value++;
-      else resultType[1].value++;
-
-      //calculation for matches played in each season
-      seasonMatches[parseInt(resultData[i].Season_Id, 10) - 1].value++;
-
-      if (resultData[i].Toss_Winner_Id === resultData[i].Match_Winner_Id)
-        matchesWonOnToss.value++;
-
-      if (resultData[i].Host_Country === "India") hostCountries[0].value++;
-      else hostCountries[1].value++;
-    }
-
+    var data = require("./datasets/IPL_Data.json");
+    var matches = data.matchStats;
     this.setState({
-      tossDecision,
-      winType,
-      totalMatches: result.data.length,
-      resultType,
-      winByRuns,
-      seasonMatches,
-      matchesWonOnToss,
-      hostCountries
+      totalMatches: matches.totalMatches,
+      tossDecision: matches.tossDecision,
+      winType: matches.winType,
+      resultType: matches.resultType,
+      winByRuns: matches.winByRuns,
+      seasonMatches: matches.seasonMatches,
+      matchesWonOnToss: matches.matchesWonOnToss,
+      hostCountries: matches.hostCountries
     });
   }
 
@@ -190,8 +78,8 @@ class MatchesData extends Component {
                 </li>
                 <li>
                   <p>
-                    Only {this.state.matchesWonOnToss.value} matches has been
-                    won by team winning toss
+                    Only {this.state.matchesWonOnToss} matches has been won by
+                    team winning toss
                   </p>
                 </li>
                 <li>
@@ -255,4 +143,4 @@ class MatchesData extends Component {
   }
 }
 
-export default MatchesData;
+export default Stats;
