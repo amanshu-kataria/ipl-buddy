@@ -15,13 +15,33 @@ class Stats extends Component {
       winByRuns: [],
       seasonMatches: [],
       matchesWonOnToss: 0,
-      hostCountries: []
+      hostCountries: [],
+      totalDeliveries: 0,
+      dotDeliveries: 0,
+      totalExtras: 0,
+      totalDismissals: 0,
+      extrasType: [],
+      dismissalTypes: [],
+      runTypes: []
     };
   }
 
   componentWillMount() {
     var data = require("./datasets/IPL_Data.json");
     var matches = data.matchStats;
+    var deliveries = data.ballsStats;
+    var totalExtras = deliveries.extrasType;
+
+    totalExtras =
+      totalExtras[0].value +
+      totalExtras[1].value +
+      totalExtras[2].value +
+      totalExtras[3].value;
+
+    var totalDismissals = 0;
+    for (var i = 0; i < deliveries.dismissalTypes.length; i++)
+      totalDismissals += deliveries.dismissalTypes[i].value;
+
     this.setState({
       totalMatches: matches.totalMatches,
       tossDecision: matches.tossDecision,
@@ -30,7 +50,14 @@ class Stats extends Component {
       winByRuns: matches.winByRuns,
       seasonMatches: matches.seasonMatches,
       matchesWonOnToss: matches.matchesWonOnToss,
-      hostCountries: matches.hostCountries
+      hostCountries: matches.hostCountries,
+      totalDeliveries: deliveries.totalDeliveries,
+      dotDeliveries: deliveries.runTypes[0].value,
+      totalExtras,
+      totalDismissals,
+      extrasType: deliveries.extrasType,
+      dismissalTypes: deliveries.dismissalTypes,
+      runTypes: deliveries.runTypes
     });
   }
 
@@ -90,6 +117,30 @@ class Stats extends Component {
                     South Africa.
                   </p>
                 </li>
+                <li>
+                  <p>
+                    A total of {this.state.totalDeliveries} has been bowled in 9
+                    seasons.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    A total of {this.state.dotDeliveries} dot deliveries has
+                    been bowled.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    A total of {this.state.totalExtras} extras has been given
+                    away.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    A total of {this.state.totalDismissals} times batsmen had
+                    been dismissed.
+                  </p>
+                </li>
               </ul>
             </Col>
           </Row>
@@ -134,6 +185,37 @@ class Stats extends Component {
                 data={this.state.seasonMatches}
                 width={500}
                 color="#4DB6AC"
+              />
+            </Col>
+          </Row>
+          <Row style={styles.row}>
+            <Col md={6} style={styles.col}>
+              <h4>Number of different extras given away</h4>
+              <Chart
+                name="Extras"
+                data={this.state.extrasType}
+                width={400}
+                color="#4CAF50"
+              />
+            </Col>
+            <Col md={6} style={styles.col}>
+              <h4>Number of different dismissals</h4>
+              <Chart
+                name="Dismissals"
+                data={this.state.dismissalTypes}
+                width={500}
+                color="#673AB7"
+              />
+            </Col>
+          </Row>
+          <Row style={styles.row}>
+            <Col md={12} style={styles.col}>
+              <h4>Number of different types of runs scored</h4>
+              <Chart
+                name="Runs Scored"
+                data={this.state.runTypes}
+                width={400}
+                color="#AA00FF"
               />
             </Col>
           </Row>
