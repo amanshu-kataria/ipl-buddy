@@ -79,6 +79,11 @@ class Stats extends Component {
       },
       container: {
         paddingTop: 60
+      },
+      divOverflow: {
+        maxWidth: "100%",
+        overflowX: "auto",
+        overflowY: "hidden"
       }
     };
     return (
@@ -171,52 +176,62 @@ class Stats extends Component {
           <Row style={styles.row}>
             <Col md={6} style={styles.col}>
               <h4>Win by margins of runs</h4>
-              <Chart
-                name="Number of Wins"
-                data={this.state.winByRuns}
-                width={400}
-                color="#F44336"
-              />
+              <div style={styles.divOverflow}>
+                <Chart
+                  name="Number of Wins"
+                  data={this.state.winByRuns}
+                  width={400}
+                  color="#F44336"
+                />
+              </div>
             </Col>
             <Col md={6} style={styles.col}>
               <h4>Matches played in each season</h4>
-              <Chart
-                name="Matches Played"
-                data={this.state.seasonMatches}
-                width={500}
-                color="#4DB6AC"
-              />
+              <div style={styles.divOverflow}>
+                <Chart
+                  name="Matches Played"
+                  data={this.state.seasonMatches}
+                  width={500}
+                  color="#4DB6AC"
+                />
+              </div>
             </Col>
           </Row>
           <Row style={styles.row}>
             <Col md={6} style={styles.col}>
               <h4>Number of different extras given away</h4>
-              <Chart
-                name="Extras"
-                data={this.state.extrasType}
-                width={400}
-                color="#4CAF50"
-              />
+              <div style={styles.divOverflow}>
+                <Chart
+                  name="Extras"
+                  data={this.state.extrasType}
+                  width={400}
+                  color="#4CAF50"
+                />
+              </div>
             </Col>
             <Col md={6} style={styles.col}>
               <h4>Number of different dismissals</h4>
-              <Chart
-                name="Dismissals"
-                data={this.state.dismissalTypes}
-                width={500}
-                color="#FF8A80"
-              />
+              <div style={styles.divOverflow}>
+                <Chart
+                  name="Dismissals"
+                  data={this.state.dismissalTypes}
+                  width={500}
+                  color="#FF8A80"
+                />
+              </div>
             </Col>
           </Row>
           <Row style={styles.row}>
             <Col md={12} style={styles.col}>
               <h4>Number of different types of runs scored</h4>
-              <Chart
-                name="Runs Scored"
-                data={this.state.runTypes}
-                width={400}
-                color="#AA00FF"
-              />
+              <div style={styles.divOverflow}>
+                <Chart
+                  name="Runs Scored"
+                  data={this.state.runTypes}
+                  width={400}
+                  color="#AA00FF"
+                />
+              </div>
             </Col>
           </Row>
         </Grid>
