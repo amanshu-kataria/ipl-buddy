@@ -99,19 +99,19 @@ class Stats extends Component {
               <ul>
                 <li>
                   <p>
-                    A total of {this.state.totalMatches} matches has been played
-                    till date in 9 seasons.
+                    A total of {this.state.totalMatches} matches have been
+                    played till date in 9 seasons.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Only {this.state.matchesWonOnToss} matches has been won by
+                    Only {this.state.matchesWonOnToss} matches have been won by
                     team winning toss
                   </p>
                 </li>
                 <li>
                   <p>
-                    Only {this.state.hostCountries[0].value} matches has been
+                    Only {this.state.hostCountries[0].value} matches have been
                     played in India. The other{" "}
                     {this.state.hostCountries[1].value} matches were played in
                     South Africa.
@@ -119,19 +119,19 @@ class Stats extends Component {
                 </li>
                 <li>
                   <p>
-                    A total of {this.state.totalDeliveries} has been bowled in 9
-                    seasons.
+                    A total of {this.state.totalDeliveries} deliveries have been
+                    bowled in 9 seasons.
                   </p>
                 </li>
                 <li>
                   <p>
-                    A total of {this.state.dotDeliveries} dot deliveries has
+                    A total of {this.state.dotDeliveries} dot deliveries have
                     been bowled.
                   </p>
                 </li>
                 <li>
                   <p>
-                    A total of {this.state.totalExtras} extras has been given
+                    A total of {this.state.totalExtras} extras have been given
                     away.
                   </p>
                 </li>
