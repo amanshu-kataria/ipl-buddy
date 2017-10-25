@@ -43,21 +43,21 @@
   "ballsStats": {
     "totalDeliveries": 136590,
     "runTypes": [
-      { "name": "zero", "value": 55874 },
-      { "name": "one", "value": 50107 },
-      { "name": "two", "value": 8842 },
-      { "name": "three", "value": 473 },
-      { "name": "four", "value": 15413 },
-      { "name": "five", "value": 42 },
-      { "name": "sixes", "value": 5813 }
+      { "name": "Dot", "value": 55874 },
+      { "name": "One", "value": 50107 },
+      { "name": "Two", "value": 8842 },
+      { "name": "Three", "value": 473 },
+      { "name": "Four", "value": 15413 },
+      { "name": "Five", "value": 42 },
+      { "name": "Sixes", "value": 5813 }
     ],
     "dismissalTypes": [
       { "name": "Caught", "value": 3245 },
-      { "name": "Caught And Bowled", "value": 148 },
+      { "name": "C & B", "value": 148 },
       { "name": "Bowled", "value": 1028 },
       { "name": "Run Out", "value": 583 },
       { "name": "lbw", "value": 326 },
-      { "name": "Retired Hurt", "value": 8 },
+      { "name": "Retired", "value": 8 },
       { "name": "Stumped", "value": 194 }
     ],
     "extrasType": [

@@ -124,21 +124,21 @@ iplStats.matchStats = matchStats;
 var ballsStats = {
   totalDeliveries: 0,
   runTypes: [
-    { name: "zero", value: 0 },
-    { name: "one", value: 0 },
-    { name: "two", value: 0 },
-    { name: "three", value: 0 },
-    { name: "four", value: 0 },
-    { name: "five", value: 0 },
-    { name: "sixes", value: 0 }
+    { name: "Dot", value: 0 },
+    { name: "One", value: 0 },
+    { name: "Two", value: 0 },
+    { name: "Three", value: 0 },
+    { name: "Four", value: 0 },
+    { name: "Five", value: 0 },
+    { name: "Sixes", value: 0 }
   ],
   dismissalTypes: [
     { name: "Caught", value: 0 },
-    { name: "Caught And Bowled", value: 0 },
+    { name: "C & B", value: 0 },
     { name: "Bowled", value: 0 },
     { name: "Run Out", value: 0 },
     { name: "lbw", value: 0 },
-    { name: "Retired Hurt", value: 0 },
+    { name: "Retired", value: 0 },
     { name: "Stumped", value: 0 }
   ],
   extrasType: [
