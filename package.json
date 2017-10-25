@@ -18,5 +18,5 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "http://amanshu-kataria.github.io/ipl-assignment"
+  "homepage": "http://amanshu-kataria.github.io/ipl-buddy"
 }
