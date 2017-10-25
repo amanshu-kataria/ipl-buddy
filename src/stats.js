@@ -204,7 +204,7 @@ class Stats extends Component {
                 name="Dismissals"
                 data={this.state.dismissalTypes}
                 width={500}
-                color="#673AB7"
+                color="#FF8A80"
               />
             </Col>
           </Row>
