@@ -7,5 +7,5 @@ The application is created using ReactJS. [Recharts](http://recharts.org/) are u
 ### Mobile Responsive
 [React-bootstrap](https://react-bootstrap.github.io/) is used to make the app mobile responsive.
 
-### Offline usable
-create-react-app comes with built-in support for offline usable. So, the application is offline usable too.
+### PWA & Offline usable
+[create-react-app](https://github.com/facebookincubator/create-react-app) comes with built-in support for offline usable, meeting all the Progressive Web App criteria. So, the application is offline usable too.
