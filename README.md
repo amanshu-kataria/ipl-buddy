@@ -7,7 +7,5 @@ The application is created using ReactJS. [Recharts](http://recharts.org/) are u
 ### Mobile Responsive
 [React-bootstrap](https://react-bootstrap.github.io/) is used to make the app mobile responsive.
 
-### Progressive web-app
-
 ### Offline usable
 create-react-app comes with built-in support for offline usable. So, the application is offline usable too.
